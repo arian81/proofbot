@@ -20,13 +20,16 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.author.id == 207432575541575681:
-        await message.reply("Stop memeing. Go do your proofs. Janicki is waiting.")
-    else:
-        if "proof" in message.content.lower() or "prove" in message.content.lower():
+    if "proof" in message.content.lower() or "prove" in message.content.lower():
+        if message.author.id == 207432575541575681:
+            await message.reply("Stop memeing. Go do your proofs. Janicki is waiting.")
+        else:
             await message.reply("https://i.imgur.com/hm9ZOk1.gif")
 
-        if "moore" in message.content.lower():
+    if "moore" in message.content.lower():
+        if message.author.id == 207432575541575681:
+            await message.reply("Stop memeing. Go do your proofs. Janicki is waiting.")
+        else:
             await message.reply("GET OUT OF MY OFFICE")
             await message.add_reaction("<:goToHell:1035735109174833172>")
 
