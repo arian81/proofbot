@@ -20,8 +20,12 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if "proof" in message.content or "prove" in message.content:
+    if "proof" in message.content.lower() or "prove" in message.content.lower():
         await message.reply("https://i.imgur.com/hm9ZOk1.gif")
+
+    if "moore" in message.content.lower():
+        await message.reply("GET OUT OF MY OFFICE")
+        await message.add_reaction("<:goToHell:1035735109174833172>")
 
 
 client.run(os.getenv("DISCORD_TOKEN"))
