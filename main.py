@@ -20,7 +20,12 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if "proof" in message.content.lower() or "prove" in message.content.lower():
+    if any(
+        [
+            (x.startswith("prove") or x.startswith("proof"))
+            for x in message.content.split(" ")
+        ]
+    ):
         if message.author.id == 207432575541575681:
             await message.reply("Stop memeing. Go do your proofs. Janicki is waiting.")
         else:
