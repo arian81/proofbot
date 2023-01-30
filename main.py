@@ -1,23 +1,25 @@
 import discord
 from dotenv import load_dotenv
 import os
+from discord.ext import tasks, commands
+from datetime import datetime
 
 load_dotenv()
 
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = discord.Client(intents=intents)
+bot = discord.Bot(intents=intents)
 
 
-@client.event
+@bot.event
 async def on_ready():
-    print(f"We have logged in as {client.user}")
+    print(f"We have logged in as {bot.user}")
 
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
+@bot.event
+async def on_message(message: discord.Message) -> None:
+    if message.author == bot.user:
         return
 
     if any(
@@ -39,4 +41,41 @@ async def on_message(message):
             await message.add_reaction("<:goToHell:1035735109174833172>")
 
 
-client.run(os.getenv("DISCORD_TOKEN"))
+class MyCog(commands.Cog):
+    def __init__(self, bot: discord.Bot):
+        self.bot = bot
+        self.quiz_reminder.start()
+
+    def cog_unload(self):
+        self.quiz_reminder.cancel()
+
+    @tasks.loop(seconds=1.0)
+    async def quiz_reminder(self):
+        today = datetime.now()
+        if today.weekday() == 0 and (
+            today.hour == 0 and today.minute == 0 and today.second == 0
+        ):
+            await self.bot.get_channel(1056078158014726216).send(
+                "Friendly reminder : Do your 2ac3 quiz please."
+            )
+        if today.weekday() == 0 and (
+            today.hour == 11 and today.minute == 0 and today.second == 0
+        ):
+            await self.bot.get_channel(1056078158014726216).send(
+                "Less Friendly reminder : Do your 2ac3 quiz."
+            )
+        if today.weekday() == 0 and (
+            today.hour == 3 and today.minute == 30 and today.second == 0
+        ):
+            await self.bot.get_channel(1056078158014726216).send(
+                "DO YOUR FUCKING QUIZ OR ELSE"
+            )
+
+    @quiz_reminder.before_loop
+    async def before_printer(self):
+        print("waiting...")
+        await self.bot.wait_until_ready()
+
+
+bot.add_cog(MyCog(bot))
+bot.run(os.getenv("DISCORD_TOKEN"))
