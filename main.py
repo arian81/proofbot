@@ -70,13 +70,6 @@ class MyCog(commands.Cog):
             await self.bot.get_channel(1056078158014726216).send(
                 f"<@&1069731625946075187> DO YOUR FUCKING QUIZ OR ELSE"
             )
-        if today.weekday() == 0 and (
-            today.hour == 19 and today.minute == 14 and today.second == 0
-        ):
-            print("send")
-            await self.bot.get_channel(846922359625875457).send(
-                f"<@&1069731625946075187> DO YOUR FUCKING QUIZ OR ELSE"
-            )
 
     @quiz_reminder.before_loop
     async def before_printer(self):
