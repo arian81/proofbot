@@ -56,19 +56,26 @@ class MyCog(commands.Cog):
             today.hour == 0 and today.minute == 0 and today.second == 0
         ):
             await self.bot.get_channel(1056078158014726216).send(
-                "Friendly reminder : Do your 2ac3 quiz please."
+                f"<@&1069731625946075187> Friendly reminder : Do your 2ac3 quiz please."
             )
         if today.weekday() == 0 and (
             today.hour == 11 and today.minute == 0 and today.second == 0
         ):
             await self.bot.get_channel(1056078158014726216).send(
-                "Less Friendly reminder : Do your 2ac3 quiz."
+                f"<@&1069731625946075187> Less Friendly reminder : Do your 2ac3 quiz."
             )
         if today.weekday() == 0 and (
-            today.hour == 3 and today.minute == 30 and today.second == 0
+            today.hour == 15 and today.minute == 30 and today.second == 0
         ):
             await self.bot.get_channel(1056078158014726216).send(
-                "DO YOUR FUCKING QUIZ OR ELSE"
+                f"<@&1069731625946075187> DO YOUR FUCKING QUIZ OR ELSE"
+            )
+        if today.weekday() == 0 and (
+            today.hour == 19 and today.minute == 14 and today.second == 0
+        ):
+            print("send")
+            await self.bot.get_channel(846922359625875457).send(
+                f"<@&1069731625946075187> DO YOUR FUCKING QUIZ OR ELSE"
             )
 
     @quiz_reminder.before_loop
