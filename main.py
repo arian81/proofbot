@@ -15,6 +15,11 @@ bot = discord.Bot(intents=intents)
 @bot.event
 async def on_ready():
     print(f"We have logged in as {bot.user}")
+    await bot.change_presence(
+        activity=discord.Activity(
+            type=discord.ActivityType.watching, name="kids suffer"
+        ),
+    )
 
 
 @bot.event
