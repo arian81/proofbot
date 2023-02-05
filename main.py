@@ -27,16 +27,16 @@ async def on_message(message: discord.Message) -> None:
     if message.author == bot.user:
         return
 
-    if any(
-        [
-            (x.startswith("prove") or x.startswith("proof"))
-            for x in message.content.split(" ")
-        ]
-    ):
-        if message.author.id == 207432575541575681:
-            await message.reply("Stop memeing. Go do your proofs. Janicki is waiting.")
-        else:
-            await message.reply("https://i.imgur.com/hm9ZOk1.gif")
+    # if any(
+    #     [
+    #         (x.startswith("prove") or x.startswith("proof"))
+    #         for x in message.content.split(" ")
+    #     ]
+    # ):
+    #     if message.author.id == 207432575541575681:
+    #         await message.reply("Stop memeing. Go do your proofs. Janicki is waiting.")
+    #     else:
+    #         await message.reply("https://i.imgur.com/hm9ZOk1.gif")
 
     if "moore" in message.content.lower():
         if message.author.id == 207432575541575681:
